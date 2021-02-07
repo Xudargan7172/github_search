@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:github_search/models/owner.dart';
+import 'package:intl/intl.dart';
 
 Repositorie repositorieFromJson(String str) => Repositorie.fromJson(json.decode(str));
 
@@ -53,7 +54,7 @@ class Item {
   Owner owner;
   String description;
   DateTime createdAt;
-  DateTime updatedAt;
+  String updatedAt;
   DateTime pushedAt;
   int stargazersCount;
 
@@ -66,7 +67,7 @@ class Item {
     owner: Owner.fromJson(json["owner"]),
     description: json["description"] == null ? null : json["description"],
     createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
+    updatedAt: new DateFormat('dd-MM-yyyy hh:mm').format(DateTime.parse(json["updated_at"])),
     pushedAt: DateTime.parse(json["pushed_at"]),
     stargazersCount: json["stargazers_count"],
   );
@@ -80,7 +81,7 @@ class Item {
     "owner": owner.toJson(),
     "description": description == null ? null : description,
     "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt,
     "pushed_at": pushedAt.toIso8601String(),
     "stargazers_count": stargazersCount,
   };
