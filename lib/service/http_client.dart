@@ -7,15 +7,23 @@ class HttpClient {
 
   static const BASE_URL = 'https://api.github.com';
   static const PER_PAGE = 10;
-
   static Future searchRepositories({String seachName, int page = 1}) async {
-    var url = '$BASE_URL/search/repositories?q=$seachName&per_page=$PER_PAGE&page=$page';
+    var response;
+    var url =
+        '$BASE_URL/search/repositories?q=$seachName&per_page=$PER_PAGE&page=$page';
     print(url);
-    var response = await http.get(url);
-
-    print('Response body: ${json.decode(utf8.decode(response.bodyBytes))}');
-    final jsonData = utf8.decode(response.bodyBytes);
-    final repositorie = repositorieFromJson(jsonData);
-    return repositorie;
+    try {
+      response = await http.get(url);
+    } catch (e) {
+      print(e);
+    }
+    if (response.statusCode == 200) {
+      print('Response body: ${json.decode(utf8.decode(response.bodyBytes))}');
+      final jsonData = utf8.decode(response.bodyBytes);
+      final repositorie = repositorieFromJson(jsonData);
+      return repositorie;
+    } else {
+      throw Exception("Нет соединения");
+    }
   }
 }
