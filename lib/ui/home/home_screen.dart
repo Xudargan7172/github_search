@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         color: Color(0xFFDFDFDF),
                       ),
-                      hintText: 'Поиск по репозитории',
+                      // hintText: 'Поиск репозитории',
                     ),
                   ),
                 ),
