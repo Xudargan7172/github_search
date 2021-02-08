@@ -31,11 +31,12 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     if (!controller.hasClients) return;
     final double maxHeight = controller.position.maxScrollExtent;
     final double currentHeight = controller.offset;
-    if (currentHeight >= maxHeight * 0.85) {
+    if (currentHeight >= maxHeight * 0.9) {
       bloc.add(
         NextPageEvent(
           repoName: widget.repoName,
           page: ++page,
+          isLoading: true,
         ),
       );
     }
@@ -85,56 +86,12 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
             }
             if (state is LoadedState) {
               return Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      "Найдено: ${state.repoList.totalCount}".toUpperCase(),
-                      style: TextStyle(
-                        color: kTextColor,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        controller: controller,
-                        itemCount: state.repoList.items.length,
-                        itemBuilder: (context, index) => RepoInfoCard(
-                          repositorie: state.repoList,
-                          index: index,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: builResult(state),
               );
             }
             if (state is LoadingState) {
               return Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      "Найдено: ${state.repoList.totalCount}".toUpperCase(),
-                      style: TextStyle(
-                        color: kTextColor,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        controller: controller,
-                        itemCount: state.repoList.items.length,
-                        itemBuilder: (context, index) => RepoInfoCard(
-                          repositorie: state.repoList,
-                          index: index,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: builResult(state),
               );
             }
             return Center(
@@ -143,6 +100,39 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
           }),
         ],
       ),
+    );
+  }
+
+  Widget builResult(var state) {
+    return Column(
+      children: [
+        Text(
+          "Найдено: ${state.repoList.totalCount}".toUpperCase(),
+          style: TextStyle(
+            color: kTextColor,
+          ),
+        ),
+        SizedBox(
+          height: 19,
+        ),
+        Expanded(
+          child: ListView.builder(
+            controller: controller,
+            itemCount: state.repoList.items.length,
+            itemBuilder: (context, index) => RepoInfoCard(
+              repositorie: state.repoList,
+              index: index,
+            ),
+          ),
+        ),
+        Container(
+          height: state.isLoading ? 40.0 : 0,
+          color: Colors.transparent,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      ],
     );
   }
 }

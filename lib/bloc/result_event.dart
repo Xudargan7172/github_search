@@ -15,7 +15,8 @@ class SendRequestEvent extends ResultEvent {
 class NextPageEvent extends ResultEvent {
   final String repoName;
   int page;
+  bool isLoading;
 
-  NextPageEvent({this.repoName, this.page});
+  NextPageEvent({this.repoName, this.page, this.isLoading});
 }
 

@@ -12,7 +12,6 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
   ResultBloc() : super(ResultInitial());
 
   Repositorie repositoriesList = null;
-
   @override
   Stream<ResultState> mapEventToState(
     ResultEvent event,
@@ -20,17 +19,17 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
     if(event is SendRequestEvent) {
       try {
         repositoriesList = await HttpClient.searchRepositories(seachName: event.repoName);
-        yield LoadedState(repositoriesList);
+        yield LoadedState(repoList: repositoriesList, isLoading: false);
       } catch (e) {
         print(e);
       }
     }
     if(event is NextPageEvent) {
-      yield LoadingState(repositoriesList);
+      yield LoadingState(repositoriesList, event.isLoading);
       print(event.page);
       try {
         (await HttpClient.searchRepositories(seachName: event.repoName, page: event.page)).items.forEach((element) => repositoriesList.items.add(element));
-        yield LoadedState(repositoriesList);
+        yield LoadedState(repoList: repositoriesList, isLoading: false);
       } catch (e) {
         print(e);
       }

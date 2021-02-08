@@ -7,12 +7,14 @@ class ResultInitial extends ResultState {}
 
 class LoadingState extends ResultState {
   final Repositorie repoList;
+  bool isLoading;
 
-  LoadingState(this.repoList);
+  LoadingState(this.repoList, this.isLoading);
 }
 
 class LoadedState extends ResultState {
   final Repositorie repoList;
+  bool isLoading;
 
-  LoadedState(this.repoList);
+  LoadedState({this.repoList, this.isLoading});
 }
