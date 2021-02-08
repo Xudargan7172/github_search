@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_search/bloc/result_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_search/constants.dart';
 
 import '../searching_result/search_result_screen.dart';
 
@@ -26,7 +27,10 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            border: Border.all(width: 1, color: Color(0xFFDFDFDF)),
+            border: Border.all(
+              width: 1,
+              color: kBorderColor,
+            ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,14 +44,14 @@ class HomeScreen extends StatelessWidget {
                         .textTheme
                         .bodyText1
                         .copyWith(fontSize: 15),
-                    cursorColor: Colors.white,
+                    cursorColor: kTextColor,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(bottom: 5),
                       border: InputBorder.none,
                       hintStyle: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFFDFDFDF),
+                        color: kBorderColor,
                       ),
                       // hintText: 'Поиск репозитории',
                     ),
@@ -60,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                     _repoName = _searchController.text;
                     print(_repoName);
                     _bloc.add(SendRequestEvent(repoName: _repoName));
-                    if(_repoName != null) {
+                    if (_repoName != null) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -76,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                   height: 42,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Color(0xFF58AFFF),
+                    color: kButtonColor,
                   ),
                   child: Center(
                     child: Text(

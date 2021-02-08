@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github_search/constants.dart';
 import 'package:github_search/models/repositorie.dart';
 
 class RepoInfoCard extends StatelessWidget {
@@ -18,7 +19,7 @@ class RepoInfoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             width: 1,
-            color: Color(0xFFDFDFDF),
+            color: kBorderColor,
           ),
         ),
         child: Column(
@@ -31,7 +32,7 @@ class RepoInfoCard extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Color(0xFFA6A6A6),
+                    color: kTextColor,
                   ),
                   child: Padding(
                     padding:
@@ -73,13 +74,13 @@ class RepoInfoCard extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: Color(0xFFDFDFDF),
+              color: kBorderColor,
             ),
             RichText(
               text: TextSpan(
                 text: "Обновлено: ",
                 style: TextStyle(
-                  color: Color(0xFFA6A6A6),
+                  color: kTextColor,
                 ),
                 children: <TextSpan>[
                   TextSpan(

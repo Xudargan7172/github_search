@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/bloc/result_bloc.dart';
+import 'package:github_search/constants.dart';
 
 import 'components/repo_info_card.dart';
 
@@ -61,7 +62,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
             text: TextSpan(
               text: "По запросу: ".toUpperCase(),
               style: TextStyle(
-                color: Color(0xFFA6A6A6),
+                color: kTextColor,
               ),
               children: <TextSpan>[
                 TextSpan(
@@ -89,7 +90,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     Text(
                       "Найдено: ${state.repoList.totalCount}".toUpperCase(),
                       style: TextStyle(
-                        color: Color(0xFFA6A6A6),
+                        color: kTextColor,
                       ),
                     ),
                     SizedBox(
@@ -116,7 +117,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     Text(
                       "Найдено: ${state.repoList.totalCount}".toUpperCase(),
                       style: TextStyle(
-                        color: Color(0xFFA6A6A6),
+                        color: kTextColor,
                       ),
                     ),
                     SizedBox(
