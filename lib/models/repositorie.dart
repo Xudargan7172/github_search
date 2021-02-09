@@ -67,7 +67,7 @@ class Item {
     owner: Owner.fromJson(json["owner"]),
     description: json["description"] == null ? null : json["description"],
     createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: new DateFormat('dd-MM-yyyy hh:mm').format(DateTime.parse(json["updated_at"])),
+    updatedAt: new DateFormat('dd MMMM', 'ru_Ru').format(DateTime.parse(json["updated_at"])),
     pushedAt: DateTime.parse(json["pushed_at"]),
     stargazersCount: json["stargazers_count"],
   );

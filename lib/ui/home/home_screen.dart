@@ -17,11 +17,16 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Text(
           "Поиск".toUpperCase(),
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              letterSpacing: 1.5),
         ),
         centerTitle: true,
         elevation: 1,
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(top: 100, right: 16, left: 16),
         child: Container(
@@ -40,19 +45,10 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15),
                   child: TextField(
                     controller: _searchController,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        .copyWith(fontSize: 15),
                     cursorColor: kTextColor,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(bottom: 5),
                       border: InputBorder.none,
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: kBorderColor,
-                      ),
                       // hintText: 'Поиск репозитории',
                     ),
                   ),
@@ -85,7 +81,12 @@ class HomeScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "НАЙТИ",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        letterSpacing: 1.5,
+                      ),
                     ),
                   ),
                 ),

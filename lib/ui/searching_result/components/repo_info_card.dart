@@ -27,7 +27,13 @@ class RepoInfoCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(repositorie.items[index].name),
+                Text(
+                  repositorie.items[index].name,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Spacer(),
                 Container(
                   decoration: BoxDecoration(
@@ -36,16 +42,24 @@ class RepoInfoCard extends StatelessWidget {
                   ),
                   child: Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
-                    child:  Row(
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                    child: Row(
                       children: [
                         Icon(
                           Icons.star_border,
-                          color: Colors.white,
-                          size: 30,
+                          color: Color(0xFFFFFFFF),
+                          size: 16,
+                        ),
+                        SizedBox(
+                          width: 2,
                         ),
                         Text(
                           repositorie.items[index].stargazersCount.toString(),
+                          style: TextStyle(
+                            color: Color(0xFFFFFFFF),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -69,28 +83,39 @@ class RepoInfoCard extends StatelessWidget {
                 SizedBox(
                   width: 8,
                 ),
-                Text(repositorie.items[index].owner.login),
+                Text(
+                  repositorie.items[index].owner.login,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
             Divider(
-              height: 15,
               color: kBorderColor,
+              thickness: 1,
             ),
-            RichText(
-              text: TextSpan(
-                text: "Обновлено: ",
-                style: TextStyle(
-                  color: kTextColor,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "${repositorie.items[index].updatedAt}",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Обновлено: ",
+                  style: TextStyle(
+                    color: kTextColor,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
                   ),
-                ],
-              ),
+                ),
+                Text(
+                  "${repositorie.items[index].updatedAt}",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

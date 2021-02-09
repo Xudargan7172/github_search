@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/bloc/result_bloc.dart';
 import 'package:github_search/constants.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 import 'components/repo_info_card.dart';
 
 class SearchResultScreen extends StatefulWidget {
@@ -24,6 +25,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     bloc = BlocProvider.of<ResultBloc>(context);
     controller.addListener(onScroll);
     super.initState();
+    initializeDateFormatting();
   }
 
   void onScroll() {
@@ -48,32 +50,45 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          "Поиск".toUpperCase(),
-          style: TextStyle(color: Colors.black),
+          "Результат поиска".toUpperCase(),
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            letterSpacing: 1.5,
+          ),
         ),
         centerTitle: true,
         elevation: 1,
       ),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           SizedBox(
             height: 19,
           ),
-          RichText(
-            text: TextSpan(
-              text: "По запросу: ".toUpperCase(),
-              style: TextStyle(
-                color: kTextColor,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: widget.repoName.toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "По запросу: ".toUpperCase(),
+                style: TextStyle(
+                  color: kTextColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.5,
                 ),
-              ],
-            ),
+              ),
+              Text(
+                '"${widget.repoName.toUpperCase()}"',
+                style: TextStyle(
+                  letterSpacing: 1.5,
+                  color: Colors.blue,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 8,
@@ -110,6 +125,9 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
           "Найдено: ${state.repoList.totalCount}".toUpperCase(),
           style: TextStyle(
             color: kTextColor,
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.5,
           ),
         ),
         SizedBox(

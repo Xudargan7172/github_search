@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         title: 'GitHub Search',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'SFProDisplay',
         ),
         home: HomeScreen(),
       ),
